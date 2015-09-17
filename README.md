@@ -34,7 +34,45 @@ afeita 打造Android快速开发框架 <br/>
 
 
 *******
-##net快速使用简介
+##权限及最小API版本要求
+###权限
+```
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+###最小API版本要求
+android:minSdkVersion="11"  Anroid 3.0.x以上版本
+
+##混淆要求
+项目中使用到的所有AfeitaDb save的bean与AfeitaNet json请求的bean 需要keep,不能混淆
+```
+-keep class com.github.afeita.net.ext.cookie.persistent.CookieBean { *; }
+```
+
+##net
+AfeitaNet是基于Volley的快速开发网络框架，主要有以下特点：
+* 支持智能增加减少网络请求队列数量  
+    --基于facebook手机设备分析算法，性能优越手机更多网络请求队列，满足请求高并发更快适应。  
+* 支持Resfult  
+    --GET/PUT/POST/DELETE，同时支持请求进度状态监听
+* 支持缓存（瞬时缓存时间与二次缓存时间设置）  
+    --服务端不支持未设置Cache策略下也支持缓存
+* 支持大文件上传  
+    --同时上传多文件，文件上传进度等支持
+* 支持会话Cookie自动处理  
+    --持久化Cookie的支持
+* 支持请求响应json自动转实体类对象返回
+* 支持请求自动重定向  
+    --重定向Cookie的自动处理（HttpUrlConnection内部实现类自动重定向处理不了Cookie）
+* 支持请求及响应详细报文日志打印  
+    --需要执行adb shell setprop log.tag.VolleyTag命令即可，默认不打印。（发布代码不用管日志的打印）
+* 支持请求自动请求加载中提示  
+    --软引用...FragmentDialog避免窗口泄露,非Activity中调用中自动关进度加载提示,支持自定义加载中提示样式
+* 支持网络请求自动取消
+    --在Activity中的请求，支持在activity关闭退出时网络请求自动cancel取消。
+
+
+###快速使用简介
 ```
 //初始化AfeitaNet
 AfeitaNet afeitaNet =  new AfeitaNet(NetSampleActivity.this);
