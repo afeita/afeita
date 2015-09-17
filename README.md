@@ -43,6 +43,10 @@ afeita 打造Android快速开发框架 <br/>
 ###最小API版本要求
 android:minSdkVersion="11"  Anroid 3.0.x以上版本
 
+
+
+
+*******
 ##混淆要求
 项目中使用到的所有AfeitaDb save的bean与AfeitaNet json请求的bean 需要keep,不能混淆
 ```
