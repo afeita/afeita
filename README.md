@@ -49,6 +49,10 @@ android:minSdkVersion="11"  Anroid 3.0.x以上版本
 -keep class com.github.afeita.net.ext.cookie.persistent.CookieBean { *; }
 ```
 
+
+
+
+*******
 ##net
 AfeitaNet是基于Volley的快速开发网络框架，主要有以下特点：
 * 支持智能增加减少网络请求队列数量  
@@ -68,7 +72,7 @@ AfeitaNet是基于Volley的快速开发网络框架，主要有以下特点：
     --需要执行adb shell setprop log.tag.VolleyTag命令即可，默认不打印。（发布代码不用管日志的打印）
 * 支持请求自动请求加载中提示  
     --软引用...FragmentDialog避免窗口泄露,非Activity中调用中自动关进度加载提示,支持自定义加载中提示样式
-* 支持网络请求自动取消
+* 支持网络请求自动取消  
     --在Activity中的请求，支持在activity关闭退出时网络请求自动cancel取消。
 
 
