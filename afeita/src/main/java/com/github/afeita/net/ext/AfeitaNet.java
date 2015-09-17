@@ -410,7 +410,7 @@ public class AfeitaNet {
 
 
     //-------------------------------------------private内部通常设置部分----------------------------------------------------------------------------
-    private <T> void setCommonCallback(final NetCallback<T> callback, CacheRequest<T> cacheRequest,RequestInfo requestInfo) {
+    private <T> void setCommonCallback(final NetCallback<T> callback, final CacheRequest<T> cacheRequest,RequestInfo requestInfo) {
         TipsingNetCallback<T> tempTipsNetCallback= null;
         if (mIsShowLoadingDialog&&requestInfo.isShowLoadingDialog){ //是否展示 请求loading...加载中对话框
             if (null != mActivityRefercens){
@@ -473,7 +473,9 @@ public class AfeitaNet {
 
         final TipsingNetCallback<T> tipsingNetCallback = tempTipsNetCallback;
 
-        if (cacheRequest instanceof FileRequest){
+        final boolean isFileUploadRequest = cacheRequest instanceof FileRequest;
+        final boolean isActivityFinish = (null != mActivityRefercens) && (null != mActivityRefercens.get()) && (mActivityRefercens.get().isFinishing());
+        if (isFileUploadRequest){
             FileRequest fileRequest = (FileRequest) cacheRequest;
             fileRequest.setOnUploadProgressListener(new Response.OnUploadProgressListener() {
                 @Override
@@ -502,11 +504,21 @@ public class AfeitaNet {
 
             @Override
             public void onLoad(long loaded) {
+                cancelRequestIfActivityFinish();
                 if (null != tipsingNetCallback){
                     tipsingNetCallback.onLoad(loaded);
                 }else{
                     if (null != callback){
                         callback.onLoad(loaded);
+                    }
+                }
+            }
+
+            private void cancelRequestIfActivityFinish() {
+                if (!isFileUploadRequest&&isActivityFinish){
+                    Object tag = cacheRequest.getTag();
+                    if (null != tag){
+                        requestQueue.cancelAll(tag);
                     }
                 }
             }
@@ -524,6 +536,7 @@ public class AfeitaNet {
 
             @Override
             public void onResult(T response) {
+                cancelRequestIfActivityFinish();
                 if (null != tipsingNetCallback){
                     tipsingNetCallback.onResult(response);
                 }else{
@@ -535,6 +548,7 @@ public class AfeitaNet {
 
             @Override
             public void onError(Exception error) {
+                cancelRequestIfActivityFinish();
                 if (null != tipsingNetCallback){
                     tipsingNetCallback.onError(error);
                 }else{
@@ -558,11 +572,10 @@ public class AfeitaNet {
     }
 
     private void setCommonRequestInfo(RequestInfo requestInfo,CacheRequest<?> cacheRequest){
-        if (null != requestInfo.cancelTag){ //防止后面不当调用cancalAll时报NullPointerException
+        if (null != requestInfo.cancelTag){
             cacheRequest.setTag(requestInfo.cancelTag);
-        }else{
-            cacheRequest.setTag(AfeitaNet.class.getSimpleName());
         }
+
         cacheRequest.setLogDebugRequest(mIsDebugLog);
         cacheRequest.setInstantExpire(requestInfo.instantExpire);
         cacheRequest.setFinalExpire(requestInfo.finalExpire);

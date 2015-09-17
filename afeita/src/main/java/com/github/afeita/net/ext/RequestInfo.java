@@ -17,6 +17,7 @@ public class RequestInfo {
     public String url;
     /**
      * 用于取消请正在处理的请求的执行,设置了tag标准后，
+     * 没有设置canTag时，将自动设置。activity退出时自动取消
      * 可在afeitaNet.cancalAll(cancelTag)
      */
     public String cancelTag;

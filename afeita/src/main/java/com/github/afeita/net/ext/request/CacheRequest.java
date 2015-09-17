@@ -250,6 +250,9 @@ public abstract class CacheRequest<T> extends Request<T> {
         super.addMarker(tag);
         if ("add-to-queue".equals(tag)){
             mExecutorDelivery.postOnStart(this);
+            if (null == getTag()){
+                setTag(getSequence()+"");
+            }
         }
     }
     public void deliverOnStart(){

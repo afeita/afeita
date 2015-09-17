@@ -117,10 +117,10 @@ public class NetSampleActivity extends Activity implements View.OnClickListener 
         RequestInfo requestInfo = new RequestInfo();
         requestInfo.url = url;
         requestInfo.isShowLoadingDialog = false;
-        //afeitaNet.setIsShowLoadingDialog(false);
+        afeitaNet.setIsShowLoadingDialog(false);
         //--- 设置缓存时间
-        //requestInfo.instantExpire = 3 * 60 * 1000; //瞬时缓存3分钟
-        //requestInfo.finalExpire = 1 * 60 * 60 * 1000; //二次缓存时间 1小时，这两个参数成队出现，要不都不设置，要不都设置
+        requestInfo.instantExpire = 3 * 60 * 1000; //瞬时缓存3分钟
+        requestInfo.finalExpire = 1 * 60 * 60 * 1000; //二次缓存时间 1小时，这两个参数成队出现，要不都不设置，要不都设置
         afeitaNet.getForJson(requestInfo, new NetCallback<Weather>() {
             @Override
             public void onResult(Weather weather) {
