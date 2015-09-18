@@ -73,7 +73,7 @@ AfeitaNet是基于Volley的快速开发网络框架，主要有以下特点：
 * 支持请求自动重定向  
     --重定向Cookie的自动处理（HttpUrlConnection内部实现类自动重定向处理不了Cookie）
 * 支持请求及响应详细报文日志打印  
-    --需要执行adb shell setprop log.tag.VolleyTag命令即可，默认不打印。（发布代码不用管日志的打印）
+    --需要执行adb shell setprop log.tag.VolleyTag VERBOSE命令即可，默认不打印。（发布代码不用管日志的打印）
 * 支持请求自动请求加载中提示  
     --软引用...FragmentDialog避免窗口泄露,非Activity中调用中自动关进度加载提示,支持自定义加载中提示样式
 * 支持网络请求自动取消  
