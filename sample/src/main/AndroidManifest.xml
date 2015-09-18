@@ -25,6 +25,8 @@
         </activity>
 
         <activity android:name=".netsample.NetSampleActivity" />
+        <activity android:name=".utilsample.UtilMainActivity" />
+        <activity android:name=".utilsample.HelpAdapterActivity" />
 
     </application>
 

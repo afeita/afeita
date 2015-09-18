@@ -12,10 +12,17 @@
 
 
     <Button
-        android:id="@+id/btn_afeitanet"
+    android:id="@+id/btn_afeitanet"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="afeitanet访问网络示例"
+
+    />
+    <Button
+        android:id="@+id/btn_utilsample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="afeitanet访问网络示例"
+        android:text="util使用示例"
 
         />
 
