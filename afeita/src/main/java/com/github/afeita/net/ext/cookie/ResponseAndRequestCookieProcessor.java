@@ -86,7 +86,7 @@ public class ResponseAndRequestCookieProcessor {
         //-----------------------------------------------------------------------------------------------------
         Map<String, List<String>> headerFields = connection.getHeaderFields();
         List<String> setCookies = headerFields.get("Set-Cookie");
-        List<String> responseCookies = new ArrayList<>();
+        List<String> responseCookies = new ArrayList<String>();
         if (null != setCookies && setCookies.size()>0){
             for(String setCookie : setCookies){
                 if (setCookie.contains(",")){
