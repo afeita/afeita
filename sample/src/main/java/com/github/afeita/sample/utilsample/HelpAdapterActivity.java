@@ -25,7 +25,7 @@ public class HelpAdapterActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_helpadapter_list);
+        setContentView(R.layout.activity_helpadapter_list);
         initView();
         doLogic();
     }
