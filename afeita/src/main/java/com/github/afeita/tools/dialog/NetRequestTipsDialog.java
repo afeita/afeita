@@ -4,6 +4,7 @@ package com.github.afeita.tools.dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.github.afeita.R;
 
 /**
  * 请求loading...，提示的对话框，可以重写此对话框，提供新的显示样式。
@@ -48,7 +51,9 @@ public class NetRequestTipsDialog extends DialogFragment {
         progressBar.setLayoutParams(pLp);
 
         TextView textView = new TextView(context);
-        textView.setText("正在加载数据中...");
+        String tipsOnLoading = getString(R.string.tips_request_on_loading);
+        tipsOnLoading = !TextUtils.isEmpty(tipsOnLoading)? tipsOnLoading : "正在加载数据中...";
+        textView.setText(tipsOnLoading);
         LinearLayout.LayoutParams tLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         tLp.gravity = Gravity.CENTER_VERTICAL;
         tLp.topMargin = tenDp;
