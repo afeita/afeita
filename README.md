@@ -78,6 +78,8 @@ AfeitaNet是基于Volley的快速开发网络框架，主要有以下特点：
     --软引用...FragmentDialog避免窗口泄露,非Activity中调用中自动关进度加载提示,支持自定义加载中提示样式
 * 支持网络请求自动取消  
     --在Activity中的请求，支持在activity关闭退出时网络请求自动cancel取消。
+* 支持https ssl 自签名证书开发调度不校验支持 
+    --默认支持开发模式下，https ssl证书不校验支持。在发布时，需要将[NetConfig](https://github.com/afeita/afeita/blob/master/afeita/src/main/java/com/github/afeita/net/ext/NetConfig.java) IS_SSL_VALIDATIONENABLED关闭。
 
 
 ###快速使用简介
