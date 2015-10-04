@@ -20,6 +20,7 @@ import com.github.afeita.net.AuthFailureError;
 import com.github.afeita.net.Request;
 import com.github.afeita.net.Request.Method;
 import com.github.afeita.net.VolleyLog;
+import com.github.afeita.net.ext.NetConfig;
 import com.github.afeita.net.ext.cookie.ResponseAndRequestCookieProcessor;
 import com.github.afeita.net.ext.multipart.FileMultipartEntity;
 import com.github.afeita.net.ext.request.CacheRequest;
@@ -41,13 +42,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * An {@link HttpStack} based on {@link HttpURLConnection}.
@@ -112,6 +119,12 @@ public class HurlStack implements HttpStack {
         //处理请求的Cookie
         responseAndRequestCookieProcessor.processRequestCookie(connection,map);
         //高版本的HttpURLConnection默认支持了gzip,不需要处理了,自动加上去了,若响应header中有gzip也自动decode了...
+
+        if (parsedUrl.getProtocol().equals("https") && NetConfig.IS_SSL_VALIDATIONENABLED) {
+            HttpsURLConnection httpsConnection = (HttpsURLConnection) connection;
+            httpsConnection.setSSLSocketFactory(getAllHostsValidSocketFactory());
+            httpsConnection.setHostnameVerifier(getAllHostsValidVerifier());
+        }
 
         for (String headerName : map.keySet()) {
             connection.addRequestProperty(headerName, map.get(headerName));
@@ -344,4 +357,48 @@ public class HurlStack implements HttpStack {
             }
         }
     }
+
+
+
+    //-------------------------- 开发环境下, https 不做证书校验
+    private static SSLSocketFactory sAllHostsValidSocketFactory;
+
+    private static SSLSocketFactory getAllHostsValidSocketFactory()  {
+        if (sAllHostsValidSocketFactory == null) {
+            TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+            } };
+            try {
+                SSLContext sc = SSLContext.getInstance("SSL");
+                sc.init(null, trustAllCerts, new java.security.SecureRandom());
+                sAllHostsValidSocketFactory = sc.getSocketFactory();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return sAllHostsValidSocketFactory;
+    }
+
+    private static HostnameVerifier sAllHostsValidVerifier;
+
+    private static HostnameVerifier getAllHostsValidVerifier() {
+        if (sAllHostsValidVerifier == null) {
+            sAllHostsValidVerifier = new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            };
+        }
+
+        return sAllHostsValidVerifier;
+    }
+
 }

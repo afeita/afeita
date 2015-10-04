@@ -41,7 +41,7 @@ public class AfeitaNet {
     private boolean mIsShowLoadingDialog ;
 
     //是否打印请求日志
-    private boolean mIsDebugLog;
+    private boolean mIsDebugLog = true;
 
     //全局请求头
     private Map<String,String> mGlobalRequestHeaders;
