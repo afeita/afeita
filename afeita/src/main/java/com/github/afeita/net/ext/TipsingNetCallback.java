@@ -2,6 +2,7 @@ package com.github.afeita.net.ext;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 
 import com.github.afeita.tools.dialog.NetRequestTipsDialog;
 
@@ -43,7 +44,11 @@ public abstract class TipsingNetCallback<T> extends NetCallback<T> {
         Activity activity = mActivityRefercens.get();
         if (null != dialogFragment && !dialogFragment.isVisible()){
             if (null != activity && !activity.isFinishing()){
-                dialogFragment.show(activity.getFragmentManager(),this.getClass().getSimpleName());
+                FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
+                ft.add(dialogFragment, this.getClass().getSimpleName());
+                ft.commitAllowingStateLoss(); //修复show默认是commit但，当主activity变成后台中，会onSave时，再onSave中,,,show报错的问题。
+                //dialogFragment.show(activity.getFragmentManager(),this.getClass().getSimpleName());
+
             }
         }
         onBegin();
@@ -70,22 +75,34 @@ public abstract class TipsingNetCallback<T> extends NetCallback<T> {
 
     }
 
-
     @Override
-    public void onError(Exception error) {
+    public void onResult(T response) {
+        closeLoadingDialog();
+    }
 
+    private void closeLoadingDialog() {
+        if (null != mDialogFragmentWeakReference){
+            DialogFragment dialogFragment = mDialogFragmentWeakReference.get();
+            if (null != dialogFragment ){
+                dialogFragment.dismissAllowingStateLoss();
+                mActivityRefercens.clear();
+                mDialogFragmentWeakReference.clear();
+                mActivityRefercens = null;
+                mDialogFragmentWeakReference = null;
+            }
+        }
     }
 
     @Override
+    public void onError(Exception error) {
+        closeLoadingDialog();
+    }
+
+
+
+    @Override
     public void onFinish(boolean isCancel) {
-        DialogFragment dialogFragment = mDialogFragmentWeakReference.get();
-        if (null != dialogFragment && dialogFragment.isVisible()){
-            dialogFragment.dismiss();
-            mActivityRefercens.clear();
-            mDialogFragmentWeakReference.clear();
-            mActivityRefercens = null;
-            mDialogFragmentWeakReference = null;
-        }
+        closeLoadingDialog();
         onEnd(isCancel);
     }
 

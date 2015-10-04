@@ -445,6 +445,7 @@ public class AfeitaNet {
 
                     @Override
                     public void onResult(T response) {
+                        super.onResult(response);
                         if (null != callback){
                             callback.onResult(response);
                         }
@@ -452,6 +453,7 @@ public class AfeitaNet {
 
                     @Override
                     public void onError(Exception error) {
+                        super.onError(error);
                         if (null != callback){
                             callback.onError(error);
                         }
