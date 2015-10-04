@@ -20,7 +20,7 @@ public class NetConfig {
     public static boolean IS_SSL_VALIDATIONENABLED = true;
 
     //请求失败时，尝试几次（含有第一次的，即共请求几次）
-    public static int requestFailureRetryTime = 2;
+    public static int REQUEST_FAILURE_RETRYTIME = 2;
 
     // 静态初始化
     static {   //--默认Volley Log开启
