@@ -129,7 +129,7 @@ public class HttpHeaderParserUtil {
 
         Cache.Entry entry = new Cache.Entry();
 
-        if(0==finalExpire&&0==softExpire){//若服务端没有返回相应的标识位，则使用自己设置的即时缓存与最大缓存时间
+        if(0==finalExpire&&0==softExpire||softExpire == now){//若服务端没有返回相应的标识位，则使用自己设置的即时缓存与最大缓存时间
             softExpire = now + softExpireGap; //
             finalExpire = now + finalExpireGap; //
         }
