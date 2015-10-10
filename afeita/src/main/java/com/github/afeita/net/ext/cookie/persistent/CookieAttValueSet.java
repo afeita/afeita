@@ -1,6 +1,8 @@
 
 package com.github.afeita.net.ext.cookie.persistent;
 
+import android.text.TextUtils;
+
 import com.github.afeita.net.ext.cookie.BasicClientCookie2;
 import com.github.afeita.net.ext.cookie.Cookie;
 
@@ -23,22 +25,27 @@ public class CookieAttValueSet {
         BasicClientCookie2 cookie = new BasicClientCookie2(cookieBean.getName(),cookieBean.getValue());
         cookie.setComment(cookieBean.getComment());
         cookie.setCommentURL(cookieBean.getCommentUrl());
-        cookie.setExpiryDate(new Date(Long.valueOf(cookieBean.getExpiryDatetime())));
+        //若空的不处理expiredDate
+        if (!TextUtils.isEmpty(cookieBean.getExpiryDatetime())){
+            cookie.setExpiryDate(new Date(Long.valueOf(cookieBean.getExpiryDatetime())));
+        }
         cookie.setDomain(cookieBean.getDomain());
         cookie.setPath(cookieBean.getPath());
         String strPorts = cookieBean.getPorts();
-        final StringTokenizer st = new StringTokenizer(strPorts, ",");
-        int[] ports = null;
-        int i = 0;
-        while(st.hasMoreTokens()) {
-            if (null == ports){
-                ports = new int[st.countTokens()];
+        if (!TextUtils.isEmpty(strPorts)){
+            final StringTokenizer st = new StringTokenizer(strPorts, ",");
+            int[] ports = null;
+            int i = 0;
+            while(st.hasMoreTokens()) {
+                if (null == ports){
+                    ports = new int[st.countTokens()];
+                }
+                ports[i] = Integer.parseInt(st.nextToken().trim());
+                ++i;
             }
-            ports[i] = Integer.parseInt(st.nextToken().trim());
-            ++i;
-        }
-        if (null != ports){
-            cookie.setPorts(ports);
+            if (null != ports){
+                cookie.setPorts(ports);
+            }
         }
         cookie.setSecure(Boolean.valueOf(cookieBean.getIsSecure()));
         cookie.setVersion(Integer.valueOf(cookieBean.getVersion()));

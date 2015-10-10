@@ -1,6 +1,7 @@
 package com.github.afeita.net.ext.cookie;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -332,9 +333,14 @@ public class BasicClientCookie implements SetCookie,ClientCookie,Cloneable,Seria
         buffer.append(this.cookiePath);
         buffer.append(";");
 
-        buffer.append("expiry=");
-        buffer.append(this.cookieExpiryDate);
-        buffer.append("");
+        if (cookieExpiryDate != null){
+            //默认以Cookie0 Netscape公司的标准,格式化过期日期
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd-MMM-yy HH:mm:ss z");
+            buffer.append("expiry=");
+            buffer.append(simpleDateFormat.format(cookieExpiryDate));
+            buffer.append(";");
+        }
+        buffer.deleteCharAt(buffer.length() - 1); //去掉最后的;号
         return buffer.toString();
     }
 

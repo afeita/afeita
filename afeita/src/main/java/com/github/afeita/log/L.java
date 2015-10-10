@@ -11,7 +11,7 @@ import android.util.Log;
  */
 public class L {
 
-	private static boolean debug = true;
+	private static boolean debug = LogSwitch.OPEN_LOG;
 
 	private static int defaultLogLevel = Log.VERBOSE;
 	
