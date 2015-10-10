@@ -18,6 +18,8 @@ package com.github.afeita.net;
 
 import android.os.Process;
 
+import com.github.afeita.net.ext.request.CacheRequest;
+
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -111,6 +113,17 @@ public class CacheDispatcher extends Thread {
                     request.setCacheEntry(entry);
                     mNetworkQueue.put(request);
                     continue;
+                }
+
+                //若使用了，缓存存在时也不使用缓存时，则强制使用网络请求数据。
+                if (request instanceof CacheRequest){
+                    CacheRequest cacheRequest = (CacheRequest) request;
+                    if (!cacheRequest.isUseCacheIfCacheExist()){
+                        request.addMarker("cache-hit-but-nouse-cache");
+                        request.setCacheEntry(entry);
+                        mNetworkQueue.put(request);
+                        continue;
+                    }
                 }
 
                 // We have a cache hit; parse its data for delivery back to the request.

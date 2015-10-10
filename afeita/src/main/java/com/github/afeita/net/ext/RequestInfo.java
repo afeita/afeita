@@ -68,6 +68,12 @@ public class RequestInfo {
      */
     public long finalExpire;
 
+    /**
+     * 当指定了instantExpire与finalExpire 且存在缓存数据时，是否使用缓存数据。默认是使用。
+     * 特殊需求情况下，可以不使用。比如有需求退出app后重进入app时强制要求刷新网络数据，此时需要强制指定为false
+     */
+    public boolean isUseCacheIfCacheExist = true;
+
     //-------------------------------------------请求体数据设置部分----------------------------------------------------------------------------
 
     /**

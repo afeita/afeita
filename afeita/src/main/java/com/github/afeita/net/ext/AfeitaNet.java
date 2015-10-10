@@ -581,6 +581,7 @@ public class AfeitaNet {
         cacheRequest.setLogDebugRequest(mIsDebugLog);
         cacheRequest.setInstantExpire(requestInfo.instantExpire);
         cacheRequest.setFinalExpire(requestInfo.finalExpire);
+        cacheRequest.setIsUseCacheIfCacheExist(requestInfo.isUseCacheIfCacheExist);
         switch (requestInfo.contentType){
             case CT_JSON:
                 cacheRequest.setBodyContentType(CacheRequest.RctType.RCT_JSON);
