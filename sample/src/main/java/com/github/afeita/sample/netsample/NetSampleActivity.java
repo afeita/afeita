@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.afeita.log.L;
+import com.github.afeita.net.VolleyLog;
 import com.github.afeita.net.ext.AfeitaNet;
 import com.github.afeita.net.ext.NetCallback;
 import com.github.afeita.net.ext.RequestInfo;
@@ -37,6 +38,7 @@ public class NetSampleActivity extends Activity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_netsample);
         initView();
+        VolleyLog.DEBUG = true;
         afeitaNet = new AfeitaNet(NetSampleActivity.this);
     }
 

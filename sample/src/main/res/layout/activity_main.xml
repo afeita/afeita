@@ -19,6 +19,13 @@
 
     />
     <Button
+        android:id="@+id/btn_afeitanet_errortips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="afeitanet访问网络示例网络错误提示"
+
+        />
+    <Button
         android:id="@+id/btn_utilsample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
