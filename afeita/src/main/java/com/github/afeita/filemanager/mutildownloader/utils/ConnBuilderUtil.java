@@ -68,7 +68,7 @@ public class ConnBuilderUtil {
             if (typeName.equalsIgnoreCase("WIFI")) {
                 type = PublicCons.NetType.WIFI;
             } else if (typeName.equalsIgnoreCase("MOBILE")) {
-                String proxyHost = android.net.Proxy.getDefaultHost();
+                String proxyHost = System.getProperty("http.proxyHost");
                 type = TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ?
                         PublicCons.NetType.G3 : PublicCons.NetType.G2) :
                         PublicCons.NetType.WAP;
