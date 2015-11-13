@@ -13,33 +13,33 @@ public class PublicCons {
     /**
      * 文件访问模式
      */
-    public static interface AccessModes {
-        public static final String ACCESS_MODE_R = "r";
-        public static final String ACCESS_MODE_RW = "rw";
-        public static final String ACCESS_MODE_RWS = "rws";
-        public static final String ACCESS_MODE_RWD = "rwd";
+    public interface AccessModes {
+        String ACCESS_MODE_R = "r";
+        String ACCESS_MODE_RW = "rw";
+        String ACCESS_MODE_RWS = "rws";
+        String ACCESS_MODE_RWD = "rwd";
     }
 
     /**
      * 数据库常量
      */
-    public static interface DBCons {
-        public static final String TB_TASK = "task_info";
-        public static final String TB_TASK_URL_BASE = "base_url";
-        public static final String TB_TASK_URL_REAL = "real_url";
-        public static final String TB_TASK_FILE_PATH = "file_path";
-        public static final String TB_TASK_PROGRESS = "onThreadProgress";
-        public static final String TB_TASK_FILE_LENGTH = "file_length";
+    public interface DBCons {
+        String TB_TASK = "task_info";
+        String TB_TASK_URL_BASE = "base_url";
+        String TB_TASK_URL_REAL = "real_url";
+        String TB_TASK_FILE_PATH = "file_path";
+        String TB_TASK_PROGRESS = "onThreadProgress";
+        String TB_TASK_FILE_LENGTH = "file_length";
 
-        public static final String TB_THREAD = "thread_info";
-        public static final String TB_THREAD_URL_BASE = "base_url";
-        public static final String TB_THREAD_URL_REAL = "real_url";
-        public static final String TB_THREAD_FILE_PATH = "file_path";
-        public static final String TB_THREAD_START = "start";
-        public static final String TB_THREAD_END = "end";
-        public static final String TB_THREAD_ID = "id";
+        String TB_THREAD = "thread_info";
+        String TB_THREAD_URL_BASE = "base_url";
+        String TB_THREAD_URL_REAL = "real_url";
+        String TB_THREAD_FILE_PATH = "file_path";
+        String TB_THREAD_START = "start";
+        String TB_THREAD_END = "end";
+        String TB_THREAD_ID = "id";
 
-        public static final String TB_TASK_SQL_CREATE = "CREATE TABLE " +
+        String TB_TASK_SQL_CREATE = "CREATE TABLE " +
                 PublicCons.DBCons.TB_TASK + "(" +
                 BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PublicCons.DBCons.TB_TASK_URL_BASE + " CHAR, " +
@@ -47,7 +47,7 @@ public class PublicCons {
                 PublicCons.DBCons.TB_TASK_FILE_PATH + " CHAR, " +
                 PublicCons.DBCons.TB_TASK_PROGRESS + " INTEGER, " +
                 PublicCons.DBCons.TB_TASK_FILE_LENGTH + " INTEGER)";
-        public static final String TB_THREAD_SQL_CREATE = "CREATE TABLE " +
+        String TB_THREAD_SQL_CREATE = "CREATE TABLE " +
                 PublicCons.DBCons.TB_THREAD + "(" +
                 BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PublicCons.DBCons.TB_THREAD_URL_BASE + " CHAR, " +
@@ -57,21 +57,21 @@ public class PublicCons {
                 PublicCons.DBCons.TB_THREAD_END + " INTEGER, " +
                 PublicCons.DBCons.TB_THREAD_ID + " CHAR)";
 
-        public static final String TB_TASK_SQL_UPGRADE = "DROP TABLE IF EXISTS " +
+        String TB_TASK_SQL_UPGRADE = "DROP TABLE IF EXISTS " +
                 PublicCons.DBCons.TB_TASK;
-        public static final String TB_THREAD_SQL_UPGRADE = "DROP TABLE IF EXISTS " +
+        String TB_THREAD_SQL_UPGRADE = "DROP TABLE IF EXISTS " +
                 PublicCons.DBCons.TB_THREAD;
     }
 
     /**
      * 网络类型
      */
-    public static interface NetType {
-        public static final int INVALID = 0;
-        public static final int WAP = 1;
-        public static final int G2 = 2;
-        public static final int G3 = 3;
-        public static final int WIFI = 4;
-        public static final int NO_WIFI = 5;
+    public interface NetType {
+        int INVALID = 0;
+        int WAP = 1;
+        int G2 = 2;
+        int G3 = 3;
+        int WIFI = 4;
+        int NO_WIFI = 5;
     }
 }

@@ -30,7 +30,7 @@ public class ASMSerializerFactory implements Opcodes {
     private ASMClassLoader classLoader = new ASMClassLoader();
 
     public ObjectSerializer createJavaBeanSerializer(Class<?> clazz) throws Exception {
-        return createJavaBeanSerializer(clazz, (Map<String, String>) null);
+        return createJavaBeanSerializer(clazz, null);
     }
 
     private final AtomicLong seed = new AtomicLong();

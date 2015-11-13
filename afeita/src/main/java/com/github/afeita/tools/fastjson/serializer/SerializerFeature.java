@@ -73,7 +73,7 @@ public enum SerializerFeature {
      */
     WriteClassName;
 
-    private SerializerFeature(){
+    SerializerFeature(){
         mask = (1 << ordinal());
     }
 

@@ -17,9 +17,9 @@ public abstract class BasePart implements Part{
     protected static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
 
     protected interface IHeadersProvider {
-        public String getContentDisposition();
-        public String getContentType();
-        public String getContentTransferEncoding();
+        String getContentDisposition();
+        String getContentType();
+        String getContentTransferEncoding();
     }
 
     //BasePart 子类，必须初始化赋值IHeadersProvider，由各有子类告诉其contenttype等是什么值

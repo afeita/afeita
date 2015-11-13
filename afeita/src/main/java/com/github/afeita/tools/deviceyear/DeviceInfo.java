@@ -202,7 +202,7 @@ public class DeviceInfo {
         while (index < buffer.length && Character.isDigit(buffer[index])) {
           index++;
         }
-        String str = new String(buffer, 0, start, index - start);
+        String str = new String(buffer,  start, index - start);
         return Integer.parseInt(str);
       }
       index++;

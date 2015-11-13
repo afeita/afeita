@@ -20,18 +20,18 @@ public interface ResponseDelivery {
     /**
      * Parses a response from the network or cache and delivers it.
      */
-    public void postResponse(Request<?> request, Response<?> response);
+    void postResponse(Request<?> request, Response<?> response);
 
     /**
      * Parses a response from the network or cache and delivers it. The provided
      * Runnable will be executed after delivery.
      */
-    public void postResponse(Request<?> request, Response<?> response, Runnable runnable);
+    void postResponse(Request<?> request, Response<?> response, Runnable runnable);
 
     /**
      * Posts an error for the given request.
      */
-    public void postError(Request<?> request, VolleyError error);
+    void postError(Request<?> request, VolleyError error);
 
     /**
      * Post 一个请求响应的进度
@@ -41,7 +41,7 @@ public interface ResponseDelivery {
      * @param currentSpendedTime
      * @param sumSpendedTime
      */
-    public void postLoading(Request<?> request, long sumDonedSize, long currentDone, long currentSpendedTime, long sumSpendedTime);
+    void postLoading(Request<?> request, long sumDonedSize, long currentDone, long currentSpendedTime, long sumSpendedTime);
 
     /**
      * Post 上传的进度
@@ -52,5 +52,5 @@ public interface ResponseDelivery {
      * @param sumDonedSize 已经上传的文件总大小
      * @param sumSpendedTime
      */
-    public void postUploading(Request<?> request,int fileNum,String currentUploadFilename, long sumSize, long sumDonedSize, long sumSpendedTime);
+    void postUploading(Request<?> request, int fileNum, String currentUploadFilename, long sumSize, long sumDonedSize, long sumSpendedTime);
 }

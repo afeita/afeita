@@ -26,7 +26,7 @@ public class Response<T> {
     /** Callback interface for delivering parsed responses. */
     public interface Listener<T> {
         /** Called when a response is received. */
-        public void onResponse(T response);
+        void onResponse(T response);
     }
 
     /** Callback interface for delivering error responses. */
@@ -35,7 +35,7 @@ public class Response<T> {
          * Callback method that an error has been occurred with the
          * provided error code and optional user-readable message.
          */
-        public void onErrorResponse(VolleyError error);
+        void onErrorResponse(VolleyError error);
     }
 
     public interface OnUploadProgressListener{
@@ -48,7 +48,7 @@ public class Response<T> {
          * @param sumDonedSize -- 已经上传报文的大小 byte字节
          * @param sumSpendedTime    -- 已经上传的总共花的时间 mm毫秒
          */
-        public void onUploadProgress(int fileNum,String currentUploadingFilename,long sumSize, long sumDonedSize, long sumSpendedTime);
+        void onUploadProgress(int fileNum, String currentUploadingFilename, long sumSize, long sumDonedSize, long sumSpendedTime);
     }
 
     public interface OnUpdateProgressListener {
@@ -60,7 +60,7 @@ public class Response<T> {
          * @param currentSpendedTime    -- 本次下载的响应所花的时间 mm毫秒
          * @param sumSpendedTime    -- 已经下载的响应总共花的时间 mm毫秒
          */
-        public void onUpdateProgress(long sumDonedSize, long currentDone, long currentSpendedTime, long sumSpendedTime);
+        void onUpdateProgress(long sumDonedSize, long currentDone, long currentSpendedTime, long sumSpendedTime);
     }
 
     /** Returns a successful response containing the parsed result. */

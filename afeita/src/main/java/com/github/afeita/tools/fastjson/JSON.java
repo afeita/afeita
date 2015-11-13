@@ -15,19 +15,6 @@
  */
 package com.github.afeita.tools.fastjson;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.CharsetDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 import com.github.afeita.tools.fastjson.parser.DefaultExtJSONParser;
 import com.github.afeita.tools.fastjson.parser.DefaultJSONParser;
 import com.github.afeita.tools.fastjson.parser.Feature;
@@ -42,6 +29,19 @@ import com.github.afeita.tools.fastjson.util.IOUtils;
 import com.github.afeita.tools.fastjson.util.ThreadLocalCache;
 import com.github.afeita.tools.fastjson.util.TypeUtils;
 import com.github.afeita.tools.fastjson.util.UTF8Decoder;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharsetDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author wenshao<szujobs@hotmail.com>
@@ -149,7 +149,7 @@ public abstract class JSON implements JSONStreamAware, JSONAware {
 
     @SuppressWarnings("unchecked")
     public static final <T> T parseObject(String text, Class<T> clazz, Feature... features) {
-        return (T) parseObject(text, (Type) clazz, ParserConfig.getGlobalInstance(), DEFAULT_PARSER_FEATURE, features);
+        return (T) parseObject(text, clazz, ParserConfig.getGlobalInstance(), DEFAULT_PARSER_FEATURE, features);
     }
 
     @SuppressWarnings("unchecked")
@@ -168,7 +168,7 @@ public abstract class JSON implements JSONStreamAware, JSONAware {
         }
 
         DefaultExtJSONParser parser = new DefaultExtJSONParser(input, ParserConfig.getGlobalInstance(), featureValues);
-        T value = (T) parser.parseObject(clazz);
+        T value = parser.parseObject(clazz);
 
         parser.close();
 
@@ -187,7 +187,7 @@ public abstract class JSON implements JSONStreamAware, JSONAware {
         }
 
         DefaultExtJSONParser parser = new DefaultExtJSONParser(input, config, featureValues);
-        T value = (T) parser.parseObject(clazz);
+        T value = parser.parseObject(clazz);
 
         if (clazz != JSONArray.class) {
             parser.close();
@@ -234,7 +234,7 @@ public abstract class JSON implements JSONStreamAware, JSONAware {
 
         DefaultExtJSONParser parser = new DefaultExtJSONParser(input, length, ParserConfig.getGlobalInstance(),
                                                                featureValues);
-        T value = (T) parser.parseObject(clazz);
+        T value = parser.parseObject(clazz);
 
         parser.close();
 
@@ -445,7 +445,7 @@ public abstract class JSON implements JSONStreamAware, JSONAware {
 
             for (FieldInfo field : getters) {
                 Method method = field.getMethod();
-                Object value = method.invoke(javaObject, new Object[0]);
+                Object value = method.invoke(javaObject);
                 Object jsonValue = toJSON(value);
 
                 json.put(field.getName(), jsonValue);

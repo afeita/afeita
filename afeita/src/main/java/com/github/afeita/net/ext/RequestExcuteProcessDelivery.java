@@ -9,17 +9,17 @@ import com.github.afeita.net.ext.request.FileRequest;
  * <br /> email: chenshufei2@sina.com
  */
 public interface RequestExcuteProcessDelivery<T> {
-    public void postOnStart(CacheRequest<T> cacheRequest);
+    void postOnStart(CacheRequest<T> cacheRequest);
 
-    public void postOnUpload(FileRequest<T> fileRequest,int fileNum,String currentUploadFilename,long sumSize,long sumDonedSize,long sumSpendedTime);
+    void postOnUpload(FileRequest<T> fileRequest, int fileNum, String currentUploadFilename, long sumSize, long sumDonedSize, long sumSpendedTime);
 
-    public void postOnLoad(CacheRequest<T> cacheRequest,long loaded);
+    void postOnLoad(CacheRequest<T> cacheRequest, long loaded);
 
-    public void postOnCancle(CacheRequest<T> cacheRequest);
+    void postOnCancle(CacheRequest<T> cacheRequest);
 
-    public void postOnResult(CacheRequest<T> cacheRequest,T response);
+    void postOnResult(CacheRequest<T> cacheRequest, T response);
 
-    public void postOnError(CacheRequest<T> cacheRequest,Exception error);
+    void postOnError(CacheRequest<T> cacheRequest, Exception error);
 
-    public void postOnFinish(CacheRequest<T> cacheRequest,boolean isCancel);
+    void postOnFinish(CacheRequest<T> cacheRequest, boolean isCancel);
 }

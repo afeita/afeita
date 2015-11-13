@@ -74,8 +74,7 @@ public class ConfigurationData {
 	}
 
 	public void saveMe(Context context) {
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		Editor preferencesEditor = preferences.edit();
 
 		preferencesEditor.putString("serverip", SERVER_IP);
@@ -85,8 +84,7 @@ public class ConfigurationData {
 	}
 
 	public void readMe(Context context) {
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 
 		SERVER_IP = preferences.getString("serverip", "");
 		SERVER_PORT = preferences.getString("serverport", "");
@@ -100,8 +98,7 @@ public class ConfigurationData {
 	 * @return
 	 */
 	public int readSpDataInt(Context context, String strKey,int defaultInt){
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		return preferences.getInt(strKey, defaultInt);
 	}
 
@@ -113,8 +110,7 @@ public class ConfigurationData {
 	 */
 	public void saveSpDataInt(Context context, String strKey,int intValue){
 		
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		Editor preferencesEditor = preferences.edit();
 		preferencesEditor.putInt(strKey, intValue);
 		preferencesEditor.commit();
@@ -129,8 +125,7 @@ public class ConfigurationData {
 	 * @return
 	 */
 	public long readSpDataLong(Context context, String strKey,long defaultLong){
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		return preferences.getLong(strKey, defaultLong);
 	}
 
@@ -142,8 +137,7 @@ public class ConfigurationData {
 	 */
 	public void saveSpDataLong(Context context, String strKey,long longValue){
 		
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		Editor preferencesEditor = preferences.edit();
 		preferencesEditor.putLong(strKey, longValue);
 		preferencesEditor.commit();
@@ -162,8 +156,7 @@ public class ConfigurationData {
 		if (null == context) {
 			return null;
 		}
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		return preferences.getString(strKey,defaultStr);
 	}
 
@@ -175,8 +168,7 @@ public class ConfigurationData {
 	 */
 	public void saveSpDataString(Context context, String strKey,String strValue){
 		
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		Log.i("saveSpDataString", "context: "+context);
 		Editor preferencesEditor = preferences.edit();
 		preferencesEditor.putString(strKey, strValue);
@@ -192,8 +184,7 @@ public class ConfigurationData {
 	 * @return
 	 */
 	public boolean readSpDataBoolean(Context context, String strKey,boolean defaultStr){
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		return preferences.getBoolean(strKey,defaultStr);
 	}
 
@@ -205,8 +196,7 @@ public class ConfigurationData {
 	 */
 	public void saveSpDataBoolean(Context context, String strKey,boolean strValue){
 		
-		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF,
-				context.MODE_PRIVATE);
+		SharedPreferences preferences = context.getSharedPreferences(SYS_CONF, Context.MODE_PRIVATE);
 		Editor preferencesEditor = preferences.edit();
 		preferencesEditor.putBoolean(strKey, strValue);
 		preferencesEditor.commit();

@@ -643,7 +643,7 @@ public class TypeUtils {
 
                 Object value = map.get(key);
                 value = cast(value, method.getGenericParameterTypes()[0], mapping);
-                method.invoke(object, new Object[] { value });
+                method.invoke(object, value);
             }
 
             return object;

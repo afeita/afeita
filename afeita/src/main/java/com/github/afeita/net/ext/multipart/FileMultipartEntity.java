@@ -13,8 +13,8 @@ import java.io.OutputStream;
 public class FileMultipartEntity extends MultipartEntity {
     private long mOffset;
     private OnUploadProgressListener mOnUploadProgressListener;
-    public static interface OnUploadProgressListener{
-        public void onUploadProgress(int fileNum,String currentUploadFilename,long fileSumSize,long transferredSize);
+    public interface OnUploadProgressListener{
+        void onUploadProgress(int fileNum, String currentUploadFilename, long fileSumSize, long transferredSize);
     }
 
     public void setOnUploadProgressListener(OnUploadProgressListener onUploadProgressListener) {

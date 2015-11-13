@@ -51,7 +51,7 @@ public class SerializeConfig extends IdentityHashMap<Type, ObjectSerializer> {
 
     private final static SerializeConfig globalInstance = new SerializeConfig();
 
-    private boolean                      asm            = !ASMUtils.isAndroid();      ;
+    private boolean                      asm            = !ASMUtils.isAndroid();
 
     private final ASMSerializerFactory   asmFactory     = new ASMSerializerFactory();
 

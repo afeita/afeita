@@ -11,6 +11,6 @@ import java.io.OutputStream;
  * <br /> email: chenshufei2@sina.com
  */
 public interface Part {
-    public long getContentLength(Boundary boundary);
-    public void writeTo(final OutputStream out, Boundary boundary) throws IOException;
+    long getContentLength(Boundary boundary);
+    void writeTo(final OutputStream out, Boundary boundary) throws IOException;
 }

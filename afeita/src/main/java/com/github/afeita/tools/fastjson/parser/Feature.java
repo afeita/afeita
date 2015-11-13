@@ -70,7 +70,7 @@ public enum Feature {
     DisableASM
     ;
 
-    private Feature(){
+    Feature(){
         mask = (1 << ordinal());
     }
 

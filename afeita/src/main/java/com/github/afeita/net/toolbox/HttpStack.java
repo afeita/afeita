@@ -33,7 +33,7 @@ public interface HttpStack {
      * Numeric status code, 200: OK
      */
 
-    public static final int HTTP_OK = 200;
+    int HTTP_OK = 200;
 
     //-------支持的编码类型  --是否支持gzip压缩
     String HEADER_ACCEPT_ENCODING = "Accept-Encoding";
@@ -51,7 +51,7 @@ public interface HttpStack {
      *         {@link Request#getHeaders()}
      * @return the HTTP response
      */
-    public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
+    HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
         throws IOException, AuthFailureError;
 
 }

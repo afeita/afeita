@@ -231,21 +231,24 @@ public abstract class CacheRequest<T> extends Request<T> {
      * 整个请求完成时的回调
      */
     public abstract class OnRequestLifecycleCallback {
-        public void onStart(){};
+        public void onStart(){}
+
         /**
          * 网络请求访问的速度，loaded代表每秒访问下载的是多少byte
          * @param loaded
          */
-        public void onLoad(long loaded){};
-        public void onCancle(){};
+        public void onLoad(long loaded){}
+
+        public void onCancle(){}
+
         public abstract void onResult(T response);
-        public void onError(Exception error){};
+        public void onError(Exception error){}
 
         /**
          * 请求结束，isCancel 是否正常执行的（有报文响应或异常错误返回 false），手工cancel isCancel是true
          * @param isCancel
          */
-        public void onFinish(boolean isCancel){};
+        public void onFinish(boolean isCancel){}
     }
 
     /**

@@ -21,12 +21,12 @@ public enum HttpConnPars {
     public String header;// 标题
     public String content;// 内容
 
-    private HttpConnPars(String header, String content) {
+    HttpConnPars(String header, String content) {
         this.header = header;
         this.content = content;
     }
 
-    private HttpConnPars(String content) {
+    HttpConnPars(String content) {
         this.content = content;
     }
 }

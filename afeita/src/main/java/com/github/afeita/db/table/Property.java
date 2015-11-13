@@ -4,7 +4,6 @@ import com.github.afeita.tools.DateTimeUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * bean 中每个属性 构建一个Property
@@ -27,15 +26,15 @@ public class Property {
 				if(String.class == dataType){
 					set.invoke(receiver, value.toString());
 				}else if( int.class == dataType || Integer.class == dataType ){
-					set.invoke(receiver, value == null ? (Integer) null : Integer.parseInt(value.toString()));
+					set.invoke(receiver, value == null ? null : Integer.parseInt(value.toString()));
 				}else if (dataType == float.class || dataType == Float.class) {
-					set.invoke(receiver, value == null ? (Float) null: Float.parseFloat(value.toString()));
+					set.invoke(receiver, value == null ? null : Float.parseFloat(value.toString()));
 				} else if (dataType == double.class || dataType == Double.class) {
-					set.invoke(receiver, value == null ? (Double) null: Double.parseDouble(value.toString()));
+					set.invoke(receiver, value == null ? null : Double.parseDouble(value.toString()));
 				} else if (dataType == long.class || dataType == Long.class) {
-					set.invoke(receiver, value == null ? (Long) null: Long.parseLong(value.toString()));
+					set.invoke(receiver, value == null ? null : Long.parseLong(value.toString()));
 				} else if (dataType == java.util.Date.class || dataType == java.sql.Date.class) {
-					set.invoke(receiver, value == null ? (Date) null: DateTimeUtil.stringToDateTime(value.toString()));
+					set.invoke(receiver, value == null ? null : DateTimeUtil.stringToDateTime(value.toString()));
 				} else {
 					set.invoke(receiver, value);
 				}

@@ -198,13 +198,13 @@ public class FieldUtils {
 				if (type == String.class) {
 					set.invoke(entity, value.toString());
 				} else if (type == int.class || type == Integer.class) {
-					set.invoke(entity, value == null ? (Integer) null : Integer.parseInt(value.toString()));
+					set.invoke(entity, value == null ? null : Integer.parseInt(value.toString()));
 				} else if (type == float.class || type == Float.class) {
-					set.invoke(entity, value == null ? (Float) null: Float.parseFloat(value.toString()));
+					set.invoke(entity, value == null ? null : Float.parseFloat(value.toString()));
 				} else if (type == long.class || type == Long.class) {
-					set.invoke(entity, value == null ? (Long) null: Long.parseLong(value.toString()));
+					set.invoke(entity, value == null ? null : Long.parseLong(value.toString()));
 				} else if (type == Date.class) {
-					set.invoke(entity, value == null ? (Date) null: DateTimeUtil.stringToDateTime(value.toString()));
+					set.invoke(entity, value == null ? null : DateTimeUtil.stringToDateTime(value.toString()));
 				} else {
 					set.invoke(entity, value);
 				}
