@@ -21,6 +21,7 @@ public class JsonFileRequest<T> extends FileRequest<T> {
 
     private Class<T> mClazz;
 
+    @SuppressWarnings("unchecked")
     public JsonFileRequest(int method, String url, ResponseCallback<T> responseCallback, Response.OnUploadProgressListener onUploadProgressListener,Class clazz) {
         super(method, url, responseCallback, onUploadProgressListener);
         this.mClazz = clazz;

@@ -270,6 +270,7 @@ public abstract class CacheRequest<T> extends Request<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addMarker(String tag) {
         super.addMarker(tag);
         if ("add-to-queue".equals(tag)){
@@ -289,6 +290,7 @@ public abstract class CacheRequest<T> extends Request<T> {
      * 请求被取消
      */
     @Override
+    @SuppressWarnings("unchecked")
     public void cancel() {
         super.cancel();
         mExecutorDelivery.postOnCancle(this);
@@ -301,6 +303,7 @@ public abstract class CacheRequest<T> extends Request<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void finish(String tag) {
         super.finish(tag);
         mExecutorDelivery.postOnFinish(this,!("done".equals(tag)||"not-modified".equals(tag)));
@@ -313,6 +316,7 @@ public abstract class CacheRequest<T> extends Request<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void deliverResponse(T response) { //主线程中完成，由ExecutorDelivery的主线程handler执行
         if (null != mResponseCallback){
             mResponseCallback.onResponse(response);
@@ -327,6 +331,7 @@ public abstract class CacheRequest<T> extends Request<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deliverError(VolleyError error) { ////主线程中完成，由ExecutorDelivery的主线程handler执行
         super.deliverError(error);
         mExecutorDelivery.postOnError(this,error);
@@ -338,6 +343,7 @@ public abstract class CacheRequest<T> extends Request<T> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void deliverLoading(long sumDonedSize,long currentDone,long currentSpendedTime,long sumSpendedTime){
         long loaded = (0 != sumSpendedTime) ? ((1000 * sumDonedSize) / sumSpendedTime) : sumDonedSize;
         mExecutorDelivery.postOnLoad(this,loaded);

@@ -15,14 +15,14 @@
  */
 package com.github.afeita.tools.fastjson.parser;
 
-import static com.github.afeita.tools.fastjson.parser.JSONScanner.EOI;
-
-import java.util.Map;
-
 import com.github.afeita.tools.fastjson.JSON;
 import com.github.afeita.tools.fastjson.JSONArray;
 import com.github.afeita.tools.fastjson.JSONException;
 import com.github.afeita.tools.fastjson.JSONObject;
+
+import java.util.Map;
+
+import static com.github.afeita.tools.fastjson.parser.JSONScanner.EOI;
 
 /**
  * @author wenshao<szujobs@hotmail.com>
@@ -172,7 +172,7 @@ public class DefaultJSONParser extends AbstractJSONParser {
     // }
 
     @Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings("unchecked")
     public final void parseObject(final Map object) {
         JSONScanner lexer = (JSONScanner) this.lexer;
         if (lexer.token() != JSONToken.LBRACE) {

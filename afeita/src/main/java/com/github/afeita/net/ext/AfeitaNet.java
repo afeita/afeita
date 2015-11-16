@@ -573,6 +573,7 @@ public class AfeitaNet {
         });
     }
 
+    @SuppressWarnings("unchecked")
     private void setCommonRequestInfo(RequestInfo requestInfo,CacheRequest<?> cacheRequest){
         if (null != requestInfo.cancelTag){
             cacheRequest.setTag(requestInfo.cancelTag);

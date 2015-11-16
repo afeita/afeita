@@ -275,6 +275,7 @@ public class RequestQueue {
      * <p>Releases waiting requests for <code>request.getCacheKey()</code> if
      *      <code>request.shouldCache()</code>.</p>
      */
+    @SuppressWarnings("unchecked")
     <T> void finish(Request<T> request) {
         // Remove from the set of requests currently being processed.
         synchronized (mCurrentRequests) {

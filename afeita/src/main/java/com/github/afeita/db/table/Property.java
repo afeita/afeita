@@ -43,7 +43,8 @@ public class Property {
 			}
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public <T> T getValue(Object obj){
 		if(null != obj && null != get){
 			try {

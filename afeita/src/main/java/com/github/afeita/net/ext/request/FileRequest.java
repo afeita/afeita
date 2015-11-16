@@ -68,6 +68,7 @@ public abstract class FileRequest<T> extends CacheRequest<T> {
         this(method, url, responseCallback, null);
     }
 
+    @SuppressWarnings("unchecked")
     public FileMultipartEntity getFileMultipartEntity(){
         if (null != mOnUploadProgressListener){//在最后一步，再决定是否给FileMultipartEntity设置上传进度监听
             mFileMultipartEntity.setOnUploadProgressListener(new FileMultipartEntity.OnUploadProgressListener() {
@@ -160,6 +161,7 @@ public abstract class FileRequest<T> extends CacheRequest<T> {
         this.mOnUploadProgressListener = onUploadProgressListener;
     }
 
+    @SuppressWarnings("unchecked")
     public void deliverUploading(int fileNum,String currentUploadFilename,long sumSize,long sumDonedSize,long sumSpendedTime){
         mExecutorDelivery.postOnUpload(this,fileNum,currentUploadFilename,sumSize,sumDonedSize,sumSpendedTime);
         if (null != mOnUploadProgressListener){

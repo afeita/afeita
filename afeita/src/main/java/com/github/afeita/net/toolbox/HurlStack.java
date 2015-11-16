@@ -284,6 +284,7 @@ public class HurlStack implements HttpStack {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void logRequestParams(HttpURLConnection connection, Request<?> request,Map<String,String> headers) {
         if (request instanceof  CacheRequest){
             CacheRequest cacheRequest = (CacheRequest)request;
