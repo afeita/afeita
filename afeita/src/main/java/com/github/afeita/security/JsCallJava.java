@@ -4,7 +4,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebView;
 
-import com.github.afeita.tools.fastjson.JSON;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -185,8 +186,9 @@ public class JsCallJava {
                 && !(result instanceof Float)
                 && !(result instanceof Double)
                 && !(result instanceof JSONObject)) {    // 非数字或者非字符串的构造对象类型都要序列化后再拼接
-           
-        	insertRes = JSON.toJSONString(result);
+
+            Gson gson = new Gson();
+            insertRes = gson.toJson(result);
             //insertRes = mGson.toJson(result);
         } else {  //数字直接转化
             insertRes = String.valueOf(result);

@@ -7,7 +7,7 @@ import com.github.afeita.net.Response;
 import com.github.afeita.net.ext.HttpHeaderParserUtil;
 import com.github.afeita.net.ext.ResponseCallback;
 import com.github.afeita.net.ext.exception.ResponseConentParseException;
-import com.github.afeita.tools.fastjson.JSON;
+import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
 
@@ -45,7 +45,8 @@ public class JsonRequest<T> extends CacheRequest<T> {
 
             T retVal = null;
             try {
-                retVal = JSON.parseObject(retString, mClazz);
+                Gson gson = new Gson();
+                retVal = gson.fromJson(retString, mClazz);
             } catch (Exception e) {
                 throw new ResponseConentParseException("fastjson parser failure , for :"+e.getMessage());
             }

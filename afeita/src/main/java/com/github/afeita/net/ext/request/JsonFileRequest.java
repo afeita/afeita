@@ -3,11 +3,11 @@ package com.github.afeita.net.ext.request;
 import android.text.TextUtils;
 
 import com.github.afeita.net.ext.exception.ResponseConentParseException;
-import com.github.afeita.tools.fastjson.JSON;
 import com.github.afeita.net.NetworkResponse;
 import com.github.afeita.net.Response;
 import com.github.afeita.net.ext.HttpHeaderParserUtil;
 import com.github.afeita.net.ext.ResponseCallback;
+import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
 
@@ -49,7 +49,8 @@ public class JsonFileRequest<T> extends FileRequest<T> {
         }else{
             T retVal = null;
             try {
-                retVal = JSON.parseObject(retString, mClazz);
+                Gson gson = new Gson();
+                retVal = gson.fromJson(retString, mClazz);
             } catch (Exception e) {
                 throw new ResponseConentParseException("fastjson parser failure , for :"+e.getMessage());
             }
